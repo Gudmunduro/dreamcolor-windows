@@ -221,6 +221,14 @@ namespace LightController
             materialSkinManager.Theme = settings.theme;
 
             light = new Light(settings.ip);
+            if (light.isConnected)
+            {
+                status = "Connected";
+            }
+            else
+            {
+                status = "Connection failed";
+            }
 
             settingsCancelButton.Enabled = false;
             settingsSaveButton.Enabled = false;
