@@ -1,0 +1,10 @@
+C:\Users\Gudmundur\documents\visual studio 2017\Projects\LightController\LightController\bin\Debug\LightController.exe.config
+C:\Users\Gudmundur\documents\visual studio 2017\Projects\LightController\LightController\bin\Debug\LightController.exe
+C:\Users\Gudmundur\documents\visual studio 2017\Projects\LightController\LightController\bin\Debug\LightController.pdb
+C:\Users\Gudmundur\documents\visual studio 2017\Projects\LightController\LightController\obj\Debug\LightController.csprojResolveAssemblyReference.cache
+C:\Users\Gudmundur\documents\visual studio 2017\Projects\LightController\LightController\obj\Debug\LightController.Form1.resources
+C:\Users\Gudmundur\documents\visual studio 2017\Projects\LightController\LightController\obj\Debug\LightController.Properties.Resources.resources
+C:\Users\Gudmundur\documents\visual studio 2017\Projects\LightController\LightController\obj\Debug\LightController.csproj.GenerateResource.Cache
+C:\Users\Gudmundur\documents\visual studio 2017\Projects\LightController\LightController\obj\Debug\LightController.exe
+C:\Users\Gudmundur\documents\visual studio 2017\Projects\LightController\LightController\obj\Debug\LightController.pdb
+C:\Users\Gudmundur\documents\visual studio 2017\Projects\LightController\LightController\bin\Debug\MaterialSkin.dll
