@@ -208,6 +208,8 @@ namespace LightController
         private void settingsCancelButton_Click(object sender, EventArgs e)
         {
             settingsIpTextField.Text = settings.ip;
+            settingsColorSchemeComboBox.SelectedIndex = settings.colorSchemeIndex;
+            settingsThemeComboBox.SelectedIndex = settings.themeIndex;
         }
 
         private void settingsSaveButton_Click(object sender, EventArgs e)
