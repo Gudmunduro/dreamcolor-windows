@@ -36,7 +36,6 @@
             this.tabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.normalTabPage = new System.Windows.Forms.TabPage();
             this.brightnessLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.brightnessTrackBar = new System.Windows.Forms.TrackBar();
             this.offButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.onButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.rgbTabPage = new System.Windows.Forms.TabPage();
@@ -45,8 +44,6 @@
             this.cinemaModeLightChekcBox = new MaterialSkin.Controls.MaterialCheckBox();
             this.cinemaModeCheckBox = new MaterialSkin.Controls.MaterialCheckBox();
             this.settingTabPage = new System.Windows.Forms.TabPage();
-            this.settingsColorSchemeComboBox = new System.Windows.Forms.ComboBox();
-            this.settingsThemeComboBox = new System.Windows.Forms.ComboBox();
             this.settingsThemeLabel = new MaterialSkin.Controls.MaterialLabel();
             this.settingsColorSchemeLabel = new MaterialSkin.Controls.MaterialLabel();
             this.settingsCancelButton = new MaterialSkin.Controls.MaterialFlatButton();
@@ -55,9 +52,11 @@
             this.settingsIpTextField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.statusLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.brightnessTrackBar = new MetroFramework.Controls.MetroTrackBar();
+            this.settingsThemeComboBox = new MetroFramework.Controls.MetroComboBox();
+            this.settingsColorSchemeComboBox = new MetroFramework.Controls.MetroComboBox();
             this.tabControl.SuspendLayout();
             this.normalTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.brightnessTrackBar)).BeginInit();
             this.rgbTabPage.SuspendLayout();
             this.cinemaTabPage.SuspendLayout();
             this.settingTabPage.SuspendLayout();
@@ -102,8 +101,8 @@
             // 
             // normalTabPage
             // 
-            this.normalTabPage.Controls.Add(this.brightnessLabel);
             this.normalTabPage.Controls.Add(this.brightnessTrackBar);
+            this.normalTabPage.Controls.Add(this.brightnessLabel);
             this.normalTabPage.Controls.Add(this.offButton);
             this.normalTabPage.Controls.Add(this.onButton);
             this.normalTabPage.Location = new System.Drawing.Point(4, 22);
@@ -126,15 +125,6 @@
             this.brightnessLabel.Size = new System.Drawing.Size(80, 19);
             this.brightnessLabel.TabIndex = 5;
             this.brightnessLabel.Text = "Brightness";
-            // 
-            // brightnessTrackBar
-            // 
-            this.brightnessTrackBar.Location = new System.Drawing.Point(8, 114);
-            this.brightnessTrackBar.Name = "brightnessTrackBar";
-            this.brightnessTrackBar.Size = new System.Drawing.Size(378, 45);
-            this.brightnessTrackBar.TabIndex = 4;
-            this.brightnessTrackBar.Value = 10;
-            this.brightnessTrackBar.Scroll += new System.EventHandler(this.brightnessTrackBar_Scroll);
             // 
             // offButton
             // 
@@ -254,33 +244,6 @@
             this.settingTabPage.TabIndex = 3;
             this.settingTabPage.Text = "Settings";
             // 
-            // settingsColorSchemeComboBox
-            // 
-            this.settingsColorSchemeComboBox.FormattingEnabled = true;
-            this.settingsColorSchemeComboBox.Items.AddRange(new object[] {
-            "Orange (Default)",
-            "BlueGray",
-            "Blue",
-            "Green",
-            "Red"});
-            this.settingsColorSchemeComboBox.Location = new System.Drawing.Point(151, 102);
-            this.settingsColorSchemeComboBox.Name = "settingsColorSchemeComboBox";
-            this.settingsColorSchemeComboBox.Size = new System.Drawing.Size(121, 21);
-            this.settingsColorSchemeComboBox.TabIndex = 9;
-            this.settingsColorSchemeComboBox.SelectedIndexChanged += new System.EventHandler(this.settingsColorSchemeComboBox_SelectedIndexChanged);
-            // 
-            // settingsThemeComboBox
-            // 
-            this.settingsThemeComboBox.FormattingEnabled = true;
-            this.settingsThemeComboBox.Items.AddRange(new object[] {
-            "Light",
-            "Dark"});
-            this.settingsThemeComboBox.Location = new System.Drawing.Point(151, 63);
-            this.settingsThemeComboBox.Name = "settingsThemeComboBox";
-            this.settingsThemeComboBox.Size = new System.Drawing.Size(121, 21);
-            this.settingsThemeComboBox.TabIndex = 8;
-            this.settingsThemeComboBox.SelectedIndexChanged += new System.EventHandler(this.settingsThemeComboBox_SelectedIndexChanged);
-            // 
             // settingsThemeLabel
             // 
             this.settingsThemeLabel.AutoSize = true;
@@ -382,6 +345,46 @@
             this.statusLabel.TabIndex = 6;
             this.statusLabel.Text = "Status";
             // 
+            // brightnessTrackBar
+            // 
+            this.brightnessTrackBar.BackColor = System.Drawing.Color.Transparent;
+            this.brightnessTrackBar.Location = new System.Drawing.Point(29, 145);
+            this.brightnessTrackBar.Name = "brightnessTrackBar";
+            this.brightnessTrackBar.Size = new System.Drawing.Size(350, 23);
+            this.brightnessTrackBar.TabIndex = 6;
+            this.brightnessTrackBar.Text = "Brightness";
+            this.brightnessTrackBar.Value = 100;
+            this.brightnessTrackBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.brightnessTrackBar_Scroll);
+            // 
+            // settingsThemeComboBox
+            // 
+            this.settingsThemeComboBox.FormattingEnabled = true;
+            this.settingsThemeComboBox.ItemHeight = 23;
+            this.settingsThemeComboBox.Items.AddRange(new object[] {
+            "Light",
+            "Dark"});
+            this.settingsThemeComboBox.Location = new System.Drawing.Point(151, 65);
+            this.settingsThemeComboBox.Name = "settingsThemeComboBox";
+            this.settingsThemeComboBox.Size = new System.Drawing.Size(121, 29);
+            this.settingsThemeComboBox.TabIndex = 10;
+            this.settingsThemeComboBox.SelectedIndexChanged += new System.EventHandler(this.settingsThemeComboBox_SelectedIndexChanged);
+            // 
+            // settingsColorSchemeComboBox
+            // 
+            this.settingsColorSchemeComboBox.FormattingEnabled = true;
+            this.settingsColorSchemeComboBox.ItemHeight = 23;
+            this.settingsColorSchemeComboBox.Items.AddRange(new object[] {
+            "Orange (Default)",
+            "BlueGray",
+            "Blue",
+            "Green",
+            "Red"});
+            this.settingsColorSchemeComboBox.Location = new System.Drawing.Point(151, 104);
+            this.settingsColorSchemeComboBox.Name = "settingsColorSchemeComboBox";
+            this.settingsColorSchemeComboBox.Size = new System.Drawing.Size(121, 29);
+            this.settingsColorSchemeComboBox.TabIndex = 11;
+            this.settingsColorSchemeComboBox.SelectedIndexChanged += new System.EventHandler(this.settingsColorSchemeComboBox_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -399,7 +402,6 @@
             this.tabControl.ResumeLayout(false);
             this.normalTabPage.ResumeLayout(false);
             this.normalTabPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.brightnessTrackBar)).EndInit();
             this.rgbTabPage.ResumeLayout(false);
             this.rgbTabPage.PerformLayout();
             this.cinemaTabPage.ResumeLayout(false);
@@ -424,7 +426,6 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private MaterialSkin.Controls.MaterialRaisedButton onButton;
         private MaterialSkin.Controls.MaterialLabel brightnessLabel;
-        private System.Windows.Forms.TrackBar brightnessTrackBar;
         private MaterialSkin.Controls.MaterialRaisedButton offButton;
         private MaterialSkin.Controls.MaterialFlatButton colorPickerButton;
         private MaterialSkin.Controls.MaterialLabel statusLabel;
@@ -436,8 +437,9 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField settingsIpTextField;
         private MaterialSkin.Controls.MaterialLabel settingsThemeLabel;
         private MaterialSkin.Controls.MaterialLabel settingsColorSchemeLabel;
-        private System.Windows.Forms.ComboBox settingsColorSchemeComboBox;
-        private System.Windows.Forms.ComboBox settingsThemeComboBox;
+        private MetroFramework.Controls.MetroTrackBar brightnessTrackBar;
+        private MetroFramework.Controls.MetroComboBox settingsThemeComboBox;
+        private MetroFramework.Controls.MetroComboBox settingsColorSchemeComboBox;
     }
 }
 

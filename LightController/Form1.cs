@@ -109,9 +109,9 @@ namespace LightController
             onChange();
         }
 
-        private void brightnessTrackBar_Scroll(object sender, EventArgs e)
+        private void brightnessTrackBar_Scroll(object sender, ScrollEventArgs e)
         {
-            light.dim(brightnessTrackBar.Value);
+            light.dim(brightnessTrackBar.Value / 10);
             onChange();
         }
 

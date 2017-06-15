@@ -8,3 +8,5 @@ C:\Users\Gudmundur\documents\visual studio 2017\Projects\LightController\LightCo
 C:\Users\Gudmundur\documents\visual studio 2017\Projects\LightController\LightController\obj\Debug\LightController.exe
 C:\Users\Gudmundur\documents\visual studio 2017\Projects\LightController\LightController\obj\Debug\LightController.pdb
 C:\Users\Gudmundur\documents\visual studio 2017\Projects\LightController\LightController\bin\Debug\MaterialSkin.dll
+C:\Users\Gudmundur\documents\visual studio 2017\Projects\LightController\LightController\bin\Debug\MetroFramework.dll
+C:\Users\Gudmundur\documents\visual studio 2017\Projects\LightController\LightController\bin\Debug\MetroFramework.Fonts.dll
