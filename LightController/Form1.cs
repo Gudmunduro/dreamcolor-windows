@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using MetroFramework.Controls;
 
 namespace LightController
 {
@@ -41,6 +42,12 @@ namespace LightController
             settingsIpTextField.Text = settings.ip;
             settingsColorSchemeComboBox.SelectedIndex = settings.colorSchemeIndex;
             settingsThemeComboBox.SelectedIndex = settings.themeIndex;
+
+            staticRedRadioButton.CheckedChanged -= presetRadioButton_Changed;
+            staticRedRadioButton.Checked = true;
+            staticRedRadioButton.CheckedChanged += presetRadioButton_Changed;
+
+
         }
 
         protected override void OnShown(EventArgs e)
@@ -63,6 +70,8 @@ namespace LightController
             if (cinemaController.enabled)
             {
                 cinemaController.disableWithoutChange();
+                uncheckCinemaLightCheckbox();
+                unCheckCinemaModeCheckbox();
                 setNormalContextMenu();
             }
         }
@@ -111,7 +120,25 @@ namespace LightController
 
         private void brightnessTrackBar_Scroll(object sender, ScrollEventArgs e)
         {
-            light.dim(brightnessTrackBar.Value / 10);
+            if (colorTempTrackBar.Value == 100)
+            {
+                light.dim(brightnessTrackBar.Value / 10);
+            }
+            else
+            {
+                light.brightness(brightnessTrackBar.Value);
+            }
+            rgbBrightnessTrackBar.Value = brightnessTrackBar.Value;
+            onChange();
+        }
+
+        private void colorTempTrackBar_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (brightnessTrackBar.Value != 100)
+            {
+                light.brightness(brightnessTrackBar.Value);
+            }
+            light.temp(colorTempTrackBar.Value / 10);
             onChange();
         }
 
@@ -127,6 +154,13 @@ namespace LightController
             onChange();
         }
 
+        private void rgbBrightnessTrackBar_Scroll(object sender, ScrollEventArgs e)
+        {
+            light.brightness(rgbBrightnessTrackBar.Value);
+            brightnessTrackBar.Value = rgbBrightnessTrackBar.Value;
+            onChange();
+        }
+
         // Cinema
 
         private CinemaModeController cinemaController;
@@ -138,6 +172,16 @@ namespace LightController
                 cinemaModeLightChekcBox.CheckedChanged -= cinemaModeLightCheckbox_Changed;
                 cinemaModeLightChekcBox.Checked = false;
                 cinemaModeLightChekcBox.CheckedChanged += cinemaModeLightCheckbox_Changed;
+            }
+        }
+
+        private void unCheckCinemaModeCheckbox()
+        {
+            if (cinemaModeCheckBox.Checked)
+            {
+                cinemaModeCheckBox.CheckedChanged -= cinemaModeCheckbox_Changed;
+                cinemaModeCheckBox.Checked = false;
+                cinemaModeCheckBox.CheckedChanged += cinemaModeCheckbox_Changed;
             }
         }
 
@@ -170,6 +214,32 @@ namespace LightController
                 cinemaController.enabled = false;
                 setNormalContextMenu();
             }
+        }
+
+        // presets
+
+        private void presetRadioButton_Changed(object sender, EventArgs e)
+        {
+            RadioButton senderRadioButton = (RadioButton)sender;
+            if (senderRadioButton.Checked)
+            {
+                Enum.TryParse(senderRadioButton.Tag.ToString(), out PresetMode mode);
+                light.preset(mode);
+            }
+            onChange();
+        }
+
+        // pattern
+
+        private void speedTrackBar_Scroll(object sender, ScrollEventArgs e)
+        {
+            MetroTrackBar senderTrackBar = (MetroTrackBar)sender;
+            if (senderTrackBar.Value != presetSpeedTrackBar.Value)
+            {
+
+            }
+            light.speed(senderTrackBar.Value * 2);
+            onChange();
         }
 
         // Settings
@@ -317,6 +387,5 @@ namespace LightController
         {
             cinemaModeLightChekcBox.Checked = false;
         }
-
     }
 }
