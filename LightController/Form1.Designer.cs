@@ -86,6 +86,8 @@
             this.gradualGreenBlueRadioButton = new MaterialSkin.Controls.MaterialRadioButton();
             this.patternTabPage = new System.Windows.Forms.TabPage();
             this.settingsTabPage = new System.Windows.Forms.TabPage();
+            this.settingsHideOnStartupCheckBox = new MaterialSkin.Controls.MaterialCheckBox();
+            this.settingsHideOnStartupLabel = new MaterialSkin.Controls.MaterialLabel();
             this.settingsColorSchemeComboBox = new MetroFramework.Controls.MetroComboBox();
             this.settingsThemeComboBox = new MetroFramework.Controls.MetroComboBox();
             this.settingsThemeLabel = new MaterialSkin.Controls.MaterialLabel();
@@ -95,8 +97,6 @@
             this.settingsIpLabel = new MaterialSkin.Controls.MaterialLabel();
             this.settingsIpTextField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.statusLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.settingsHideOnStartupLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.settingsHideOnStartupCheckBox = new MaterialSkin.Controls.MaterialCheckBox();
             this.tabControl.SuspendLayout();
             this.normalTabPage.SuspendLayout();
             this.rgbTabPage.SuspendLayout();
@@ -186,6 +186,7 @@
             // brightnessTrackBar
             // 
             this.brightnessTrackBar.BackColor = System.Drawing.Color.Transparent;
+            this.brightnessTrackBar.ForeColor = System.Drawing.SystemColors.ControlText;
             this.brightnessTrackBar.Location = new System.Drawing.Point(25, 110);
             this.brightnessTrackBar.Name = "brightnessTrackBar";
             this.brightnessTrackBar.Size = new System.Drawing.Size(550, 23);
@@ -1035,6 +1036,35 @@
             this.settingsTabPage.TabIndex = 3;
             this.settingsTabPage.Text = "Presets";
             // 
+            // settingsHideOnStartupCheckBox
+            // 
+            this.settingsHideOnStartupCheckBox.AutoSize = true;
+            this.settingsHideOnStartupCheckBox.Depth = 0;
+            this.settingsHideOnStartupCheckBox.Font = new System.Drawing.Font("Roboto", 10F);
+            this.settingsHideOnStartupCheckBox.Location = new System.Drawing.Point(380, 137);
+            this.settingsHideOnStartupCheckBox.Margin = new System.Windows.Forms.Padding(0);
+            this.settingsHideOnStartupCheckBox.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.settingsHideOnStartupCheckBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.settingsHideOnStartupCheckBox.Name = "settingsHideOnStartupCheckBox";
+            this.settingsHideOnStartupCheckBox.Ripple = true;
+            this.settingsHideOnStartupCheckBox.Size = new System.Drawing.Size(26, 30);
+            this.settingsHideOnStartupCheckBox.TabIndex = 13;
+            this.settingsHideOnStartupCheckBox.UseVisualStyleBackColor = true;
+            this.settingsHideOnStartupCheckBox.CheckedChanged += new System.EventHandler(this.settingsHideOnStartupCheckBox_CheckedChanged);
+            // 
+            // settingsHideOnStartupLabel
+            // 
+            this.settingsHideOnStartupLabel.AutoSize = true;
+            this.settingsHideOnStartupLabel.Depth = 0;
+            this.settingsHideOnStartupLabel.Font = new System.Drawing.Font("Roboto", 11F);
+            this.settingsHideOnStartupLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.settingsHideOnStartupLabel.Location = new System.Drawing.Point(17, 143);
+            this.settingsHideOnStartupLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.settingsHideOnStartupLabel.Name = "settingsHideOnStartupLabel";
+            this.settingsHideOnStartupLabel.Size = new System.Drawing.Size(112, 19);
+            this.settingsHideOnStartupLabel.TabIndex = 12;
+            this.settingsHideOnStartupLabel.Text = "Hide on startup";
+            // 
             // settingsColorSchemeComboBox
             // 
             this.settingsColorSchemeComboBox.FormattingEnabled = true;
@@ -1164,35 +1194,6 @@
             this.statusLabel.Size = new System.Drawing.Size(52, 19);
             this.statusLabel.TabIndex = 6;
             this.statusLabel.Text = "Status";
-            // 
-            // settingsHideOnStartupLabel
-            // 
-            this.settingsHideOnStartupLabel.AutoSize = true;
-            this.settingsHideOnStartupLabel.Depth = 0;
-            this.settingsHideOnStartupLabel.Font = new System.Drawing.Font("Roboto", 11F);
-            this.settingsHideOnStartupLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.settingsHideOnStartupLabel.Location = new System.Drawing.Point(17, 143);
-            this.settingsHideOnStartupLabel.MouseState = MaterialSkin.MouseState.HOVER;
-            this.settingsHideOnStartupLabel.Name = "settingsHideOnStartupLabel";
-            this.settingsHideOnStartupLabel.Size = new System.Drawing.Size(112, 19);
-            this.settingsHideOnStartupLabel.TabIndex = 12;
-            this.settingsHideOnStartupLabel.Text = "Hide on startup";
-            // 
-            // settingsHideOnStartupCheckBox
-            // 
-            this.settingsHideOnStartupCheckBox.AutoSize = true;
-            this.settingsHideOnStartupCheckBox.Depth = 0;
-            this.settingsHideOnStartupCheckBox.Font = new System.Drawing.Font("Roboto", 10F);
-            this.settingsHideOnStartupCheckBox.Location = new System.Drawing.Point(380, 137);
-            this.settingsHideOnStartupCheckBox.Margin = new System.Windows.Forms.Padding(0);
-            this.settingsHideOnStartupCheckBox.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.settingsHideOnStartupCheckBox.MouseState = MaterialSkin.MouseState.HOVER;
-            this.settingsHideOnStartupCheckBox.Name = "settingsHideOnStartupCheckBox";
-            this.settingsHideOnStartupCheckBox.Ripple = true;
-            this.settingsHideOnStartupCheckBox.Size = new System.Drawing.Size(26, 30);
-            this.settingsHideOnStartupCheckBox.TabIndex = 13;
-            this.settingsHideOnStartupCheckBox.UseVisualStyleBackColor = true;
-            this.settingsHideOnStartupCheckBox.CheckedChanged += new System.EventHandler(this.settingsHideOnStartupCheckBox_CheckedChanged);
             // 
             // Form1
             // 

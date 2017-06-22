@@ -352,6 +352,7 @@ namespace LightController
             menu.MenuItems.Add("Show", showWindowEvent);
             menu.MenuItems.Add("On", lightOnEvent);
             menu.MenuItems.Add("Off", lightOffEvent);
+            menu.MenuItems.Add("Set to normal", setToNormalEvent);
             menu.MenuItems.Add("RGB", setRGBEvent);
             menu.MenuItems.Add("Cinema Mode", cinemaModeEvent);
             notifyIcon.ContextMenu = menu;
@@ -396,6 +397,12 @@ namespace LightController
             rgbColorDialog.ShowDialog();
             rgbColor = rgbColorDialog.Color;
             light.rgb(rgbColor.R, rgbColor.G, rgbColor.B);
+            onChange();
+        }
+
+        private void setToNormalEvent(object sender, EventArgs e)
+        {
+            light.dim(10);
             onChange();
         }
 
