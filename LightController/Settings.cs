@@ -19,6 +19,7 @@ namespace LightController
         private Accent colorSchemeAccentPrimaryVar;
         private TextShade colorSchemeTextShadeVar;
         private int colorSchemeIndexVar;
+        private bool hideOnStartupVar;
 
         public Settings()
         {
@@ -35,6 +36,7 @@ namespace LightController
             createAndSetKeyIfNotExists(key, "colorSchemeAccentPrimary");
             createAndSetKeyIfNotExists(key, "colorSchemeTextShade");
             createAndSetKeyIfNotExists(key, "colorSchemeIndex");
+            createAndSetKeyIfNotExists(key, "hideOnStartup");
 
             Enum.TryParse((string)key.GetValue("theme"), out MaterialSkinManager.Themes themeVar);
             Enum.TryParse((string)key.GetValue("colorSchemePrimary"), out Primary colorSchemePrimaryVar);
@@ -45,6 +47,7 @@ namespace LightController
 
             this.ipVar = (string)key.GetValue("ip");
             this.colorSchemeIndexVar = Convert.ToInt32(key.GetValue("colorSchemeIndex").ToString());
+            this.hideOnStartupVar = Convert2.stringToBool(key.GetValue("hideOnStartup").ToString());
             this.themeVar = themeVar;
             this.colorSchemePrimaryVar = colorSchemePrimaryVar;
             this.colorSchemeLightPrimaryVar = colorSchemeLightPrimaryVar;
@@ -125,6 +128,12 @@ namespace LightController
             }
         }
 
+        public bool hideOnStartup
+        {
+            get { return hideOnStartupVar; }
+            set { hideOnStartupVar = value; regKey.SetValue("hideOnStartup", Convert2.boolToString(hideOnStartupVar), RegistryValueKind.String); }
+        }
+
         private int getIndexForColorScheme(ColorScheme colorScheme)
         {
             ColorScheme orange = new ColorScheme(Primary.Orange800, Primary.Orange500, Primary.Orange900, Accent.Yellow200, TextShade.WHITE);
@@ -202,14 +211,15 @@ namespace LightController
         {
             switch (key)
             {
-                case "ip": return new RegValue("192.168.1.64", RegistryValueKind.String);
+                case "ip": return new RegValue("", RegistryValueKind.String);
                 case "theme": return new RegValue("LIGHT", RegistryValueKind.String);
-                case "colorSchemePrimary": return new RegValue("BlueGrey800", RegistryValueKind.String);
-                case "colorSchemeLightPrimary": return new RegValue("BlueGrey900", RegistryValueKind.String);
-                case "colorSchemeDarkPrimary": return new RegValue("BlueGrey500", RegistryValueKind.String);
-                case "colorSchemeAccentPrimary": return new RegValue("LightBlue200", RegistryValueKind.String);
+                case "colorSchemePrimary": return new RegValue("Orange800", RegistryValueKind.String);
+                case "colorSchemeLightPrimary": return new RegValue("Orange900", RegistryValueKind.String);
+                case "colorSchemeDarkPrimary": return new RegValue("Orange500", RegistryValueKind.String);
+                case "colorSchemeAccentPrimary": return new RegValue("Yellow200", RegistryValueKind.String);
                 case "colorSchemeTextShade": return new RegValue("WHITE", RegistryValueKind.String);
                 case "colorSchemeIndex": return new RegValue("0", RegistryValueKind.String);
+                case "hideOnStartup": return new RegValue("0", RegistryValueKind.String);
             }
             return new RegValue("0", RegistryValueKind.String);
         }
@@ -242,6 +252,23 @@ namespace LightController
             this.lightPrimary = lightPrimary;
             this.accent = accent;
             this.textShade = textShade;
+        }
+    }
+
+    class Convert2
+    {
+        public static string boolToString(bool value)
+        {
+            if (value)
+            {
+                return "1";
+            }
+            return "0";
+        }
+
+        public static bool stringToBool(string value)
+        {
+            return (value == "1" || value == "true");
         }
     }
 }

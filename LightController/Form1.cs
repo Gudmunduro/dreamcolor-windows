@@ -6,8 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Sockets;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using MetroFramework.Controls;
@@ -27,21 +29,15 @@ namespace LightController
             materialSkinManager.Theme = settings.theme;
             materialSkinManager.ColorScheme = settings.colorScheme;
 
-            light = new Light(settings.ip);
-            if (light.isConnected)
-            {
-                status = "Connected";
-            }
-            else
-            {
-                status = "Connection failed";
-            }
+            connect();
+
             cinemaController = new CinemaModeController(light);
             setNormalContextMenu();
 
             settingsIpTextField.Text = settings.ip;
             settingsColorSchemeComboBox.SelectedIndex = settings.colorSchemeIndex;
             settingsThemeComboBox.SelectedIndex = settings.themeIndex;
+            settingsHideOnStartupCheckBox.Checked = settings.hideOnStartup;
 
             staticRedRadioButton.CheckedChanged -= presetRadioButton_Changed;
             staticRedRadioButton.Checked = true;
@@ -53,8 +49,11 @@ namespace LightController
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-            this.WindowState = FormWindowState.Minimized;
-            this.Hide();
+            if (settings.hideOnStartup)
+            {
+                this.WindowState = FormWindowState.Minimized;
+                this.Hide();
+            }
         }
 
         // all
@@ -101,6 +100,45 @@ namespace LightController
             else if (this.WindowState == FormWindowState.Normal)
             {
                 
+            }
+        }
+
+        private AddressFamily ipType(string ip)
+        {
+            IPAddress ipAdress;
+            if (IPAddress.TryParse(ip, out ipAdress))
+            {
+                switch(ipAdress.AddressFamily)
+                {
+                    case AddressFamily.InterNetwork: return AddressFamily.InterNetwork;
+                    case AddressFamily.InterNetworkV6: return AddressFamily.InterNetworkV6;
+                }
+            }
+            return AddressFamily.Unknown;
+        }
+
+        private void connect()
+        {
+            if (settings.ip == "")
+            {
+                status = "Ip not set";
+                light = new Light("192.168.0.0");
+                return;
+            }
+            if (ipType(settings.ip) == AddressFamily.Unknown)
+            {
+                status = "Invalid ip address";
+                light = new Light("192.168.0.0");
+                return;
+            }
+            light = new Light(settings.ip);
+            if (light.isConnected)
+            {
+                status = "Connected";
+            }
+            else
+            {
+                status = "Connection failed";
             }
         }
 
@@ -216,7 +254,7 @@ namespace LightController
             }
         }
 
-        // presets
+        // Presets
 
         private void presetRadioButton_Changed(object sender, EventArgs e)
         {
@@ -229,7 +267,7 @@ namespace LightController
             onChange();
         }
 
-        // pattern
+        // Pattern
 
         private void speedTrackBar_Scroll(object sender, ScrollEventArgs e)
         {
@@ -259,11 +297,17 @@ namespace LightController
             setSaveAndCancelEnabled();
         }
 
+        private void settingsHideOnStartupCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            setSaveAndCancelEnabled();
+        }
+
         private void setSaveAndCancelEnabled()
         {
             if (settingsIpTextField.Text == settings.ip &&
                 settingsColorSchemeComboBox.SelectedIndex == settings.colorSchemeIndex &&
-                settingsThemeComboBox.SelectedIndex == settings.themeIndex)
+                settingsThemeComboBox.SelectedIndex == settings.themeIndex &&
+                settingsHideOnStartupCheckBox.Checked == settings.hideOnStartup)
             {
                 settingsCancelButton.Enabled = false;
                 settingsSaveButton.Enabled = false;
@@ -292,15 +336,9 @@ namespace LightController
             materialSkinManager.ColorScheme = settings.colorScheme;
             materialSkinManager.Theme = settings.theme;
 
-            light = new Light(settings.ip);
-            if (light.isConnected)
-            {
-                status = "Connected";
-            }
-            else
-            {
-                status = "Connection failed";
-            }
+            settings.hideOnStartup = settingsHideOnStartupCheckBox.Checked;
+
+            connect();
 
             settingsCancelButton.Enabled = false;
             settingsSaveButton.Enabled = false;
@@ -387,5 +425,6 @@ namespace LightController
         {
             cinemaModeLightChekcBox.Checked = false;
         }
+
     }
 }

@@ -4,6 +4,6 @@ Windows application for controlling wifi enabled rgb led bulbs that work with th
 
 [Download](LightController.zip?raw=true)
 
-![Screenshot](https://github.com/Gudmunduro/dreamcolor-windows/raw/master/Screenshots/Screenshot1.JPG)
+![Screenshot](https://github.com/Gudmunduro/dreamcolor-windows/raw/master/Screenshots/Screenshot2.JPG)
 
 Icon made by Freepik from www.flaticon.com
